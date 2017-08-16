@@ -19,14 +19,13 @@ def print_items(items):
 # print(__name__)  # To print the name of python file
 
 
-def main():
-    url = sys.argv[1]
+def main(url):
     words = fetch_words(url)
     print_items(words)
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argsv[1])
 
 # to execute multiple functions in a module, in REPL, from words import (fetch_words, print_words)
 # print_words(fetch_words())

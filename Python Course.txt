@@ -1,0 +1,39 @@
+Python:
+
+1. Pass is a keyword in python which tells the interpreter do nothing.
+2. To access instance attributes, only then you need to create an object and refer it using self.<attribute_name>. 
+   For class attributes, you don't need to create instance or use self to access them, you can refer them directly using CLASSNAME.<attribute Name>
+3. The Python command line is Read-EVALuate-Print-Loop, reffered as REPL
+4. _ in repel refers to latest output value printed.
+5. Strings & Bytes
+	a) single and multi line string quoting
+	b) Adjacent string literal concatenation
+	c) Universal newline
+	d) Escape sequence for control characters
+	e) Raw strings suppress the escaping mechanism
+	f) Convert other types with strr() constructor
+	g) Zero-based square bracker indexing of strings
+	h) Rich variety of string methods
+	i) Python 3 source encoding is UTF-8
+	j) bytes is a sequences of bytes, str is a sequence of unicode codepoints
+	k) bytes literals are prefixed with lowercase based
+	l) Convert str to bytes with encode(), bytes to str with decode() //You need to encoding
+6. Lists
+	a) Lists are mutable, heterogeneous sequences of objects
+	b) lists literals delimited by square brackets, items separated by commas
+	c) Zero-based, square-bracket indexing to retrieve objects
+	d) Square-bracker assignment to replace objects
+	f) Grow lists with append() 
+	g) Construct from other sequences using list() constructor
+7. Dictionaries
+	a) Dictionaries assosiate keys with values
+	b) Literal dicts delimited by curly braces
+	c) Literal key-value pairs separated by commas, with a colon between each key and value
+8. For-Loops
+	a) Take items one-by-one from an iterable object, binding a name to the current item.
+	b) Correspond to for-each loops in other languages
+		for item in items:
+		    ....body....
+9. Advanced command line arguments passing
+	a) Python Standard Library: argspars
+	b) Many third party options such as docopt module
