@@ -37,3 +37,114 @@ Python:
 9. Advanced command line arguments passing
 	a) Python Standard Library: argspars
 	b) Many third party options such as docopt module
+10. 2 number of lines must be separated from each function. Its highly recommended by PEP eight.
+11. Shebang in mac or linux only work after chmod permission to chmod +x file.py
+12. Modules
+	a) Python code is place in *.py files called modules
+	b) Modules can be executed directly with
+		python moudle_name.py
+	c) Brought into the REPL or other modules with 
+		import module_name
+	d) Named functions defined with the def keyword
+		def function_name(arg1,..argn):
+	e) Return from functions using return keyword with optional parameter
+	f) Omitted return parameter or implicit return at end retuns None
+	g) Use __name__ to determine how the module is being used
+	h) If __name__ == "__main__" the module is being executed
+	i) Module code is executed exactly once, on first import
+	j) def keyword is a statement which binds a function definition to a name
+	k) Command line arguments are accessible through sys.argv
+	l) The script filename is in sys.argv[0]
+	m) Docstrings are a standalone literal string as the first statement of a function or module
+	n) Docstrings are delimited by triple quotes
+	o) Docstrings provide help()
+	p) Module docstrings should precede other statements
+	q) Comments begin with # and run to the end of the line
+	r) A special comment on the first line beginning #! controls module execution by the program loader
+13. Python Name Scopes
+	a) Local: Inside the current function
+	b) Enclosing: Any and all enclosing functions
+	c) Global: Top-level of module
+	d) Built-in: Provided by the bultins module
+14. Objects
+	a) Think of named references to objects rather than variables
+		1) Assignment attaches a name to an object
+		2) Assigning from one reference to another puts two name tags on the same object
+	b) The garbage collector reclaims unreachable objects
+	c) id() returns a unique and constant identifier
+		1) Rarely used in production
+	d) The is operator determines equality of identity
+	e) Test for equivalence using ==
+	f) Function arguments are passed by object-reference
+		1) Functions can modify mutable arguments
+	g) Reference is lost if a formal function argument is rebound
+		1) To change a mutable argument, replace its contents rather than replacing the whole object
+	h) return also passes by object-reference
+	i) Function arguments can be specified with defaults
+	j) Default argument experessions evaluated once, when def is executed
+	k) Python uses dynamic typing
+		1) We don't sepcify types in advance
+	l) Python uses strong typing
+		1) Types are not coerced to match
+	m) Names are looked up in four nested scopes
+		1) LEGB rule: local, Enclosing, Global and Built-ins
+	n) Global references can be read from a local scope
+	o) Use global to assign to global references from a local scope
+	p) Everything in python is an object
+		1) This includes modules and functions
+		2) They can be treated just like other objects
+	q) import and def result in binding to named references
+	r) type can be used to determine the type of an object
+	s) dir() can be used to introspect an object and get its attributes
+		1) type(module_name) (To know the type of object or module)
+		2) dir(module_name) (attributes of object or module or type)
+		3) type(module.function_name) (to know the type of function)
+		4)dir(module.function_name) (To check the attributes of a function)
+		5) module.function_name.__name__ (states the name of the function)
+		6) module.function_name.__doc__ (To know the doc string of any function)		
+	t) The name of a function or module can be accessed through its __name__ attribute
+	u) The docstring for a function or module object can be accessed through its __doc__ attribute
+	v) Use len() to measure the length of a string
+	w) You can multiply the length of a string
+		1) Produces a new string with multiple copies of the operand
+		2) This is called the repetition operation
+15. Collections
+	a) Tuples a()
+		1. Delimiting paranthesis are optional for one or more elements
+		2. Tuples are useful for multiple return values
+		3. Tuple unpacking allows us to destructure directly into named references
+		4. Tuple unpacking works with arbitrary nested tuples (although not with other data structures)
+		5. Use tuple(interable) constructor to create tuples from other iterable series of objects. for e: tuple([561, 1105, 1729]) gives output (561, 1105, 1729) and tuple("jelly") gives output: ('j', 'e', 'l', 'l', 'y') 
+		6. The in and not in operators can be used with tuples - and other collection types - for membership testing. for ex: 5 in (3, 5, 17, 257) gives output True
+	b) Strings & its methods
+		1. join(): Call the join() method on the separator string (k = ';'.join(['str', 'ing']) gives 'str;ing' )
+		2. split(): Use split() to divide a string into a list (k.split(';') gives ['str', 'ing'] )
+		3. Without an argument split() divides on whitespace (''.join(['str', 'ing']) gives 'string'
+		4. partition(): The partition method divides string into three around a separator: prefix, separator, suffix. ex: "unforgetable.partition("forget") gives ('un', 'forget', 'able')
+		5. Tuple unpacking is useful to destructure the result. 
+			ex1: departure, separator, arrival = "London:edinburgh".partition(':')
+				departure = 'London' arrival = 'Edinburgh'
+			ex2: origin, _, destination = "seattle-boston".partition('-')
+				origin = 'Seattle' destination = 'Boston'
+		6. format(): USe format() to insert values into strings. Replacememt fields delimited by { and }.
+			ex: "The age of {0} is {1}".format('Jim', 32)
+				"Current position {latitude} {longitude}".format(lattitude="60N",
+																 longitude="5E")
+			a) Field names can be omitted if used in sequence.
+			b) Integer field names matched with positional arguments
+			c) Named fields are matched with keyword arguments
+			d) Access values through keys or indexes with square brackets in the replacement field
+			e) Access attributes using dot in the replacement field.
+				pos = (6, 2, 8)
+			   "Position in graph x={pos[0]} y={pos[1]} z={pos[2]}".format(pos=pos)
+			f) The replacement field mini-language provides many value and alignment formatting options.
+				>>> import math
+				>>> "Math constants: pi={m.pi}, e={m.e}".format{m=math} or
+				>>> "Math constants: pi={m.pi:.3f}, e={m.e:.3f}".format{m=math}
+			
+				
+		
+		
+		
+	
+	
