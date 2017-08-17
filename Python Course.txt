@@ -111,15 +111,34 @@ Python:
 15. Collections
 	a) Tuples a()
 		1. Delimiting paranthesis are optional for one or more elements
+			for ex: p = 1, 3, 5, 7, 9
+			a. Nested Tuple:
+				for ex:  a = ((280, 394), (1184, 1210), (2620, 2924), (5020, 5564))
+						 a[2] = (2620 ,2924)
+						 a[2][1] = 2924
+						 len(a) = 4
+			b. To create single value/object tuple:
+				for ex: k = (391,)
+						type(k) = > <class, tuple)
+			c. To create an empty tuple.
+				for ex: k = ()
+			d. tuples can be multiplied and printed to console.
 		2. Tuples are useful for multiple return values
+			def minmax(items)
+				return min(items), max(items)
 		3. Tuple unpacking allows us to destructure directly into named references
+			lower, upper = minmax([83, 33, 84, 32, 85, 31, 86]
+			lower = > 31, upper = > 86
 		4. Tuple unpacking works with arbitrary nested tuples (although not with other data structures)
+			for ex: (a, (b, (c, d))) = (4, (5, (6, 7)))
 		5. Use tuple(interable) constructor to create tuples from other iterable series of objects. for e: tuple([561, 1105, 1729]) gives output (561, 1105, 1729) and tuple("jelly") gives output: ('j', 'e', 'l', 'l', 'y') 
 		6. The in and not in operators can be used with tuples - and other collection types - for membership testing. for ex: 5 in (3, 5, 17, 257) gives output True
 	b) Strings & its methods
 		1. join(): Call the join() method on the separator string (k = ';'.join(['str', 'ing']) gives 'str;ing' )
 		2. split(): Use split() to divide a string into a list (k.split(';') gives ['str', 'ing'] )
 		3. Without an argument split() divides on whitespace (''.join(['str', 'ing']) gives 'string'
+			a) Concatinating together the collection of strings in python can be done using empty separator, which is Python idiom.
+			for ex: ''.join(['high', 'way', 'man']) gives 'highwayman'.
 		4. partition(): The partition method divides string into three around a separator: prefix, separator, suffix. ex: "unforgetable.partition("forget") gives ('un', 'forget', 'able')
 		5. Tuple unpacking is useful to destructure the result. 
 			ex1: departure, separator, arrival = "London:edinburgh".partition(':')
@@ -141,6 +160,376 @@ Python:
 				>>> import math
 				>>> "Math constants: pi={m.pi}, e={m.e}".format{m=math} or
 				>>> "Math constants: pi={m.pi:.3f}, e={m.e:.3f}".format{m=math}
+	c) range():
+		a) range(x): x is the stop value which is one-past-the-end. range(5): [0,1,2,3,4)
+		b) Ranges are half-open-start is included but stop is not. range(0,5): [0,1,2,3,4]
+		c) Stop value of a range used as start value of consecutive range. range(5,10): [5,6,7,8,9]
+		d) Optional thrid step value. range(0,10,2): [0,2,4,6,8]
+		e) Prefer direct iteration over iterable objects such as lists.	
+			usgage: s = [0, 1, 4, 6, 13]
+					for v in s
+						print(v) # range is not best practice to use in for loop.
+		f) prefer enumerate() function for counters. Enumerate yeilds (index, value) tuples from lists.
+			for ex: t = [6,10,15,27,33]
+					for p in enumerate(t):
+						print(p)
+				gives...
+				(0,6) (1,10) (2,15) (3,27) (4,33) i.e, (index, value) tuples 
+		g) often combined with tuple unpacking.
+			for ex: for i, v in enumerate(t):
+						print("i = {}, v = {}".format(i,v))
+				gives...
+				i = 0, v = 6
+				i = 1, v = 10
+				i = 2, v = 15
+				i = 3, v = 27
+				i = 4, v = 33
+	d) list[]:
+		1. zero and positive integers for indexing from the front
+			ex: s = "show how to index into sequences".split()
+				s gives ['show', 'how', 'to', 'index', 'into', 'sequences']
+				s[4] gives 'into'
+		2. Indexing from the end rather the begining is one more way to use. It applies to tuples as well. Negative integers index from the end. The last element is at index -1
+			for ex: last index of the sequence is -1. 
+			s[-1] = 'sequences'
+			s[-2] = 'into'
+			s[-3] = 'index'
+			s[-4] = 'to'
+			s[-5] = 'how'
+			s[-6] = 'show'
+		3. slicing extracts part of list.
+			for ex: s[1:4] = ['how', 'to', 'index']
+					s[1:-1] = ['how', 'to', 'index', 'into'] (slicing works with -ve indexes as well)
+		4. Omitting start or stop indices (optional)
+			for ex: s[3:] gives ['index', 'into', 'sequences']
+					s[:3] gives ['show', 'how', 'to']
+		5. Half-open ranges give complimentary slices.		
+			s[:x] + s[x:] == s
+		6. Since stop and start indices are optional, we can use this idiom in Python to copy a list.
+			for ex: full_slice = s[:] 
+					full_slice gives ['show', 'how', 'to', 'index', 'into', 'sequences']
+			Note: full_slice is not same object as s but it has equlivalent value.
+					ex: full_slice is s gives False
+						full_slice == s gives True
+			Note: Modifying a list will alter its copy as well using this approach
+		7. u = s.copy() (copy method of list)
+			u gives ['show', 'how', 'to', 'index', 'into', 'sequences']
+		8. lists can be copied using list() constructor as well. # Best practice in python for list copying since it has the advantage to work on any iterable source but not just lists.
+			for ex: v = list(s)
+				v gives ['show', 'how', 'to', 'index', 'into', 'sequences']
+		9. All the copy approaches above will create a new copy of values in list but not copy actual list object.
+		
+		10. Copies are Shallow.
+			for ex: a = [ [1, 2], [3, 4]]
+			[1, 2] and [3, 4] are inner lists and a object has reference to outer list indices.
+			a. When copying using full_slice. b = a[:] will refer/copy to only outer list indices of a. 
+				- > here a is not b. but a == b (values are same but two different objects)
+				- > a[0] and b[0] refer to the same inner list object. 
+			b. Altering a indices will not modify b indices values.
+				for ex: a[0] = [8, 9] which change a to [[8, 9], [3, 4]]
+				    but b[0] will be [1, 2] only.
+			c. However append method of list will modify the copy when new value is appended to original list.
+				for ex: a[1].append(5) gives [[8, 9], [3, 4, 5]
+						b also will be modified: [[1, 2], [3, 4, 5]]
+			d. Lists can be repeated using * operator
+				for ex: c = [1, 2]
+						d = c * 4 gives [1, 2, 1, 2, 1, 2, 1, 2]
+					Note: Most often used for initializing list of known size with constant value.
+						ex: [0] * 4 gives [0, 0, 0, 0]
+					i.e, Multiple references to one instance of constant in the produced list. 
+					Note: Repetition will actually copy the reference but not the actual value.
+						for ex: s = [ [-1, +1] ] * 5 will create a new list s with 5 indices with referencing to the same object.
+							i.e, s == [ [-1, +1], [-1, +1], [-1, +1], [-1, +1], [-1, +1] ]
+							- > Performing append operation s[3].append(7) will refer to the modified actual inner list.
+							i.e, s == [ [-1, +1, 7], [-1, +1, 7], [-1, +1, 7], [-1, +1, 7], [-1, +1, 7] ] because all the inner lists are referring to same inner list.
+			e. Finding elemets in list.
+				index(item) returns the integer index of the first equlivalent element, also raise ValueError if not found.
+					for ex: w = "I love to visit Norway anytime".split()
+							w = ['I', 'love', 'to', 'visit' 'Norway', 'anytime']
+							i = w.index('love') => 1
+							j = w.index('India') => ValueError # this must be handled using Exception.
+						w.count('to') => 1 # which returns the repeated string in the list.
+			f. Memebership testing:			
+					33 in [1, 33, 65,72] => True 
+					32 not in [1, 32, 69, 99] => False
+			g. To delete the members from the list using 'del' keyword. (Deleting by position)
+					for ex: w = "I love to visit Norway anytime".split()
+						w = ['I', 'love', 'to', 'visit' 'Norway', 'anytime']
+						del w[5] = > ['I', 'love', 'to', 'visit' 'Norway']
+					1. Deleting using value:
+						w.remove('I') => ['love', 'to', 'visit' 'Norway']
+					2. Combining both:
+						del w[w.index('to')] => ['love', 'visit' 'Norway']
+					3. Attempting to remove a member which is not present will return value error.
+						for ex: w.remove('India') => ValueError: list.remove(x): x not in list. 
+			h. Inserting an item to list can be done using insert method.
+					for ex: w.insert(index, item)
+						w = "I love to visit Norway".split()
+						w.insert(5, "anytime") gives 
+						w = ['I', 'love', 'to', 'visit' 'Norway', 'anytime']
+					1. We can convert the list of words back into string using:
+						''.join(w) = 'I love to visit Norway anytime'
+			i. Concatinating lists using addition(+) operator will result in new list without modifying operands:
+					for ex: m = [2, 1, 3] n = [4, 5, 6]
+						k = m + n = > [2, 1, 3, 4, 5, 6]
+					1. In-place extension with += operator or extend() method.
+						for ex: k += [19, 18, 20] = > [2, 1, 3, 4, 5, 6, 19, 18, 20]
+						or 	k.extend([100, 101]) = > [2, 1, 3, 4, 5, 6, 19, 18, 20, 100, 101] 
+						Note: This can be used on any iterable objects. 
+			j. Reversing and sorting lists:
+					1. reverse(): 
+						for ex: g = [1, 2, 3, 4, 5]
+							g.reverse() = > [5, 4, 3, 2, 1]
+					2. sort():
+							for ex: h = [4, 2, 1, 5, 3]
+								h.sort() = > [1, 2, 3, 4, 5]
+								h.sort(reverse=True) = > [5, 4, 3, 2, 1]
+					3. key argument to sort() method accepts a function for producing a sort key from an item.
+						for ex: w = "love I visit to anytime Norway".split()
+								w = > ['love', 'I', 'visit', 'to', 'anytime', 'Norway']
+							w.sort(key=len) = > ['I', 'love', 'to', 'visit' 'Norway', 'anytime']
+							''.join(w) = 'I love to visit Norway anytime'
+					4. sorted() function can only be used when not modify original list but create a new sorted list.
+						for ex: x = [4, 9, 2, 1]
+								y = sorted(x) = > y = [1, 2, 4, 9] but actual x will be unmodifed.
+					5. reversed() function will reverse the list values but stored in a memory. We need list() constructor to create the list from reversed values in the memory.
+						for ex: p = [9, 3, 1, 0]
+								q = reversed(p)
+								q <_|
+								<list_reverseiterator object at 0x1007bf29>
+								list(q) 
+								[0, 1, 3, 9] because reversed will return an iterator.
+		e) Dictionaries: Unordered mapping from unique, immutable keys to mutable values
+			for ex: urls = {'Google': 'https://google.com',
+							'Pluralsight': 'https://pluralsight.com',
+							'Tumblr': 'https://www.tumblr.com'} 
+						- > key and value pairs comma separated.
+						- > corresponding keys and values joined by colon.
+					1. Values are accessed by the keys.
+						for ex: urls['Tumblr'] => 'https://www.tumblr.com'
+						Note: Keys must be unique in any single dictionary.
+					2. Interanally dictionary maintains pairs of the references to the key objects and value objects.
+						- > key objects must be immutable. (strings, numbers and tuples but not lists)
+						- > Value objects can be mutable.
+						- > order of the items may vary for every run of same program.
+					3. dict() constructor accepts:
+						- > iterable series of key-value 2-tuples.
+							for ex: order = [('krishna', 33), ('arun', 35), ('asha', 31)]
+									d = dict(order)
+									d = > {'krishna': 33, 'arun': 35, 'asha': 31}
+							Note: items in a dictionary are not stored in any particular order.
+					4. Keyword arguments - requires keys and valid python identifiers. A mapping such as another dict.
+						for ex: order = dict(a='arun', s='krishna', d='asha')
+								order = > {'a': 'arun', 'd': 'asha', 's': 'krishna'}
+					5. Dictionary copying is shallow by default copying only the references to the key and value objects, not the value objects themselves, there are two ways of copying a dictionary.
+						1. copy() method:
+							for ex: d = dict(goldenr=0xDAA520, ieml=0x4B0082, tastygav=0xFFF5EE, egree=0xDDE4AA)
+									d = > {'ieml': 221958, 'goldenr': 1621910, 'tastygav': 		383224, 'egree': 322434}
+									e = d.copy() (though we use hexadecimal, they copied decimal values to new dict)
+									e = > {'ieml': 221958, 'goldenr': 1621910, 'tastygav': 		383224, 'egree': 322434}
+						2. dict(existing_dictionary) method:
+									f = dict(e)
+									f = > {'ieml': 221958, 'goldenr': 1621910, 'tastygav': 		383224, 'egree': 322434}
+						3. update() method: To extend the dictionary with the definitions of another dictionary, we can use update() method. 
+							for ex: d = dict(goldenr=0xDAA520, ieml=0x4B0082, tastygav=0xFFF5EE, egree=0xDDE4AA)
+									f = dict(lnogdro=0xFDA340, kisr=0x5C9128)
+									f.update(d)
+									f => {'ieml': 221958, 'goldenr': 1621910, 'tastygav': 		383224, 'egree': 322434, 'lnogdro':3120183, 'kisr':201607}
+							b. update() replaces values corresponding to duplicate keys.
+								for ex: stocks = {'GOOG': 891, 'AAPL': 416, 'IBM': 194}
+										stocks.update({'GOOG': 894, 'YHOO': 25})
+										stocks => {'IBM: 194, 'GOOG': 894, 'YHOO': 25, 'AAPL': 416}
+							c. dictionaries are iterables.
+									dream = dict(goldenr='May', ieml='June', tastygav='Everytime', egree='Fantasy', lnogdro='Nostalgia', kisr='Lifetime')
+									for ex: for key in dream:
+												print("{key} => {value}".format(key=key, value=dream[key]))
+									egree => Fantasy
+									ieml => June
+									lnogdro => Nostalgia
+									.
+									.
+									Note: Order is not arbitrary, i.e, no specific order.
+						4. dict.values() method:If we want to iterate only through values of dictionary, this returns an object which provides an iterable view onto the dictionary values without causing the values to be copied. We can only print the values. (There is no way to print both keys and values through this method)
+							for ex: for value in dream.values():
+										print(value)
+								...
+								Fantasy
+								June
+								May
+								Nostalgia
+								..
+						5. dict.keys() method: which provides aview into the keys of dictionary, although not a best practice because default iteration of dictionaries is by key.
+							for ex: for key in dream.values():
+										print(key)
+									egree
+									ieml
+									goldenr
+									lnogdro
+									..
+						6. dict.items() method: This returns items view yeild each key-value pair as a tuple.
+							for ex: for key, value in dream.items():
+							print("{key} = > {value}".format(key=key, value=value))
+								egree => Fantasy
+								ieml => June
+								goldenr => May
+								lnogdro => Nostalgia
+								..
+						7. Tuple unpacking: By using it in the statement, we can get both the key and value in one operation without the extra lookup.
+						8. Dict Membership: The in and not in operators work on the keys.
+							for ex: 'ieml' in dream
+								True 
+									'gymlg; in dream 
+								False
+						9. del keyword: to remove by key.
+							for ex: del dream['kisr']
+									dream => f => {'ieml': 221958, 'goldenr': 1621910, 'tastygav': 		383224, 'egree': 322434, 'lnogdro':3120183}
+						10. keys in dictionary must be immutable where values can be modified.
+								for ex: dictionary with values as list. Dictionary cannot be modified here but the list values can be.
+									m = {'H': [1, 2, 3],
+										 'He': [3, 4],
+										 'Be': [6, 7]}
+									m['H'] += [4, 5, 6, 7]
+									m = >  {'Be': [6, 7], 'H': [1, 2, 3, 4, 5, 6, 7], 'He': [3, 4]}
+							Note: Exiting keys cannot be modified, only can be deleted. Dictionary itself is mutable.
+								m['N'] = [13, 14, 15]
+								m = >  {'Be': [6, 7], 'H': [1, 2, 3, 4, 5, 6, 7], 'He': [3, 4], 'N': [13, 14, 15]}
+						 11. Dictionaries can be printable in much pretty human readable form using pprint module.
+							for ex: from pprint import pprint as pp (best practice to use alias)
+								pp(m) => {'H': [1, 2, 3],
+										 'He': [3, 4],
+										 'Be': [6, 7]}
+		f) Set: Set data type is an undordered collection of unique elements.
+				a. The collection is mutable in so far as elements can be added and removed from the set, but each element must itself be immutable very much like the keys of a dictionary. 
+				b. Sets have a literal form very similar to dictionaries and uses curly braces.
+				c. Each item is a single object rather than key-value pair separated by a colon.
+					for ex: p = {6, 28, 496, 8128, 33550336}
+						p = > {334400336, 8128, 28, 496, 6}
+				d. Set is of type 'set' and is unordered.
+				e. Create an empty set we should use set() constructor, but assigning empty open-close curley braces result in creation of empty dictionary.
+					for ex: p = {} is a dictionary.
+							p = set() is a set. p = > set()
+				f. Duplicates are not allowed or discarded when creating a set, even using the list to create a set, if duplicates are there, will be discarded when creation of set.
+					for ex: s = set([1, 2, 4, 16, 32, 64])
+							s = > {2, 1, 4, 64, 32}.
+						Note: Sets can be often used to remove duplicates.
+								for ex:  list = [1, 2, 4, 16, 32, 64, 64]
+										 s = set(list) 
+										 s = > {1, 2, 4, 16, 32, 64}
+				g. Sets are iterable although order is arbitrary. 
+						for ex: for x in {1, 2, 4, 8, 16, 32}:
+									print(x)
+								32
+								1
+								4
+								2 ..
+				h. Memebership is fundamental operation for sets
+					for ex: q = {2, 9, 6, 4}
+						3 in q 
+						False 
+						3 not in q
+						True 
+				i. add() method is used to add single element to set
+						for ex: k = {81, 108}
+								k.add(54)
+								k = > {81, 108, 54}
+							Note: adding existing element doesn't show any impact, neither produces any error.
+				j. update() method is used to add multiple elements to the set in one go, even can be used another set.
+						for ex: k.update([37, 128, 97])
+								k = > {128, 97, 37, 12, 108, 81, 54)
+				k. Removing of elements can be done using two methods.
+					1. remove(): 
+							for ex: k.remove(97) (if element is not avaialble, KeyError is raised)
+									k = > {128, 37, 12, 108, 81, 54)
+					2. discard():
+							It doesn't throw errors if there is no available element.
+				l. copy() method: Performs a shallow copy (copy the references but not the objects)
+							for ex: j = k.copy()
+									j => {128, 37, 12, 108, 81, 54)
+						Note: set() constructor also can be used to copy.
+							for ex: m = set(j)
+									m = > {128, 37, 12, 108, 81, 54)
+				m. Sets can be powerfully used on set algebra which two sets have subset, superset or disjoint relations. 
+					for ex:	
+						set1 = {'a', 'b', 'c', 'd', 'e'}
+						set2 = {'b', 'd', 'e', 'f', 'g'}
+						set3 = {'b', 'e'}
+						set4 = {'b', 'c', 'e', 'h'}
+						set5 = {'f', 'g', 'c', 'a'}
+						set6 = {'e', 'd'}
+						set7 = {'b'}
+						set8 = {'g', 'h'}
+					ex1: To find all elements of set1 or set2 or both 
+							set1.union(set2)
+							= > {'a', 'b', 'c', 'd', 'e', 'f', 'g'}
+						Note: set1.union(set2) == set2.union(set1) returns True
+					ex2: To find common elements of set1 and set2
+							set1.intersection(set2)
+							= > {'b', 'e', 'd'}
+						Note: set1.intersection(set2) == set2.intersection(set1) returns True
+					ex3: To find all elements of set1 which are not in second set.
+							set1.difference(set2)
+							= > {'a', 'c'}
+						Note: set1.difference(set2) == set2.difference(set1) returns False
+					ex4: To collect the elements in set1 and set2 but not in both.
+							set1.symmetric_difference(set2)
+							= > {'a', 'c', 'f', 'g'}
+						Note: set1.symmetric_difference(set2) == set2.symmetric_difference(set1) returns True
+				n) Predicate methods: Which tells us about relationships between sets.
+						for ex: one set is subset of other set.
+							set3.issubset(set2)
+							= > True 
+						ex2: one set is superset of other set.
+							set4.issuperset(set3)
+							= > True
+						ex3: to test the sets have no members in common.
+							set(7).isdisjoint(set4)
+							= > True
+		g) Collection Protocols:
+				1. In python, a protocol is a set of operations or methods that a type must support if it is to implement that protocol. 
+				2. Protocols need not be defined in the source code as separate interfaces or base classes like in other typed languages like C# or Java.
+				3. In python, we just need an object which provide functioning implementations of those operations.
+					The below is a list of collections which support the specific protocols.
+						a. Container : str, list, range, tuple, bytes, set, dict.
+							Support: Membership testing using in and not in operators.
+						b. Sized : str, list, range, tuple, bytes, set, dict.
+							Support: can determine number of elements with len(s)
+						c. Iterable : str, list, range, tuple, bytes, set, dict.
+							Support: Can produce an iterator with iter(s)
+										for item in iterable:
+											do_something(item)
+						d. Sequence : str, list, range, tuple, bytes.
+							Support: 1. retreive elements by index
+											item = seq[index]
+									 2. find items by value
+											index = seq.index(item)
+									 3. count items 
+											num = seq.count(item) 
+									 4. Produce a reversed sequence 
+											r = reversed(seq) 
+						e. Mutable  Sequence: list 
+						f. Mutable Set: set 
+						g. Mutable Mapping: dict
+						
+						
+						
+		
+								
+							
+							
+						
+								
+									
+					
+			
+								
+					
+						
+					
+				
+			
+			
+				
+	
 			
 				
 		
