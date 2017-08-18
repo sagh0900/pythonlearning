@@ -511,7 +511,7 @@ Python:
 						g. Mutable Mapping: dict
 16. Exceptions:
 			
-			1. Exception handling is amechanism for stopping "normal" program flow and continuing at some surrounding context or code block.
+			1. Exception handling is amechanism for stopping "normal" program flow and continuing at some surrounding context or code block. (exceptional.py)
 				a) Raise an exception to interrupt program flow.
 				b) Handle an exception to resume control.
 				c) Unhandled exception will terminate the program
@@ -520,7 +520,10 @@ Python:
 				f) Exception objects can be converted using str(e) constructor.
 				g) raise is a keyword used at end of exception handling block. Without a parameter, raise simply re-raises the excepption that is being currently handled.
 			2. Exceptions are part of the API
-				a) Callers need to know 'what exceptions' to expect and 'when'.
+				a) Callers need to know 'what exceptions' to expect and 'when'. (roots.py)
+				b) Exception are parts of families of related functions referred to at "protocols"
+					for ex: Objects which implement the sequence protocol should raise and IndexError exception for indices which are out of range. 
+						i) The exceptions which are raised as much a part of function's specification as the arguments it accepts, and as such must be implemented and documented appropriately. 
 			
 				
 			
