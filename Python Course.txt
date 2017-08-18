@@ -520,6 +520,7 @@ Python:
 				f) Exception objects can be converted using str(e) constructor.
 				g) raise is a keyword used at end of exception handling block. Without a parameter, raise simply re-raises the excepption that is being currently handled.
 			2. Exceptions are part of the API
+				a) Callers need to know 'what exceptions' to expect and 'when'.
 			
 				
 			

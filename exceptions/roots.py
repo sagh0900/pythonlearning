@@ -1,3 +1,5 @@
+import sys
+
 def sqrt(x):
     """ Compute square roots using method of heron of Alexandria.
     
@@ -7,6 +9,9 @@ def sqrt(x):
     Returns:
         The square root of x
     """
+    if x < 0:
+        raise ValueError("Cannot compute a square root of a negative number {}"
+                         .format(x))
     guess = x
     i = 0
     while guess * guess != x and i < 20:
@@ -21,8 +26,8 @@ def main():
         print(sqrt(2))
         print(sqrt(-1))  # will raise ZeroDivisionError exception
         print("This never printed")
-    except ZeroDivisionError:
-        print("Cannot compute a square root of a negative number")
+    except ValueError as e:
+        print(e, file=sys.stderr)
 
     print("Program Execution continues normally")
 
