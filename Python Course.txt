@@ -509,7 +509,22 @@ Python:
 						e. Mutable  Sequence: list 
 						f. Mutable Set: set 
 						g. Mutable Mapping: dict
-						
+16. Exceptions:
+			
+			1. Exception handling is amechanism for stopping "normal" program flow and continuing at some surrounding context or code block.
+				a) Raise an exception to interrupt program flow.
+				b) Handle an exception to resume control.
+				c) Unhandled exception will terminate the program
+				d) Exception objects contain information about the exceptional event.
+				e) Except blocks must not be empty and are not allowed in python. If empty, indentationError, SyntaxError or NameError will be thrown which are usually used while developing Python IDE. They can be replaced in a program with "pass" statement.
+				f) Exception objects can be converted using str(e) constructor.
+				g) raise is a keyword used at end of exception handling block. Without a parameter, raise simply re-raises the excepption that is being currently handled.
+			2. Exceptions are part of the API
+			
+				
+			
+			
+			
 						
 						
 		
