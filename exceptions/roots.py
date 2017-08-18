@@ -16,10 +16,11 @@ def sqrt(x):
 
 
 def main():
-    print(sqrt(9))
-    print(sqrt(2))
     try:
+        print(sqrt(9))
+        print(sqrt(2))
         print(sqrt(-1))  # will raise ZeroDivisionError exception
+        print("This never printed")
     except ZeroDivisionError:
         print("Cannot compute a square root of a negative number")
 
