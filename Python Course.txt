@@ -593,7 +593,21 @@ Python:
 												= > {'h': 'hotel', 'f': 'foxtrot'}
 									  3. Don't cram too much complexity into comprehensions
 			Note: All the three comprehension types support an optional filtering clause, which allows us to choose which items of the source are evaluated by the expression on the left. (primes.py)
-						
+					Note: Use comprehensions only if it is not complex to write else use for loop construct.
+		
+		d. Iteration protocols:	
+			1. Iterable Protocol:
+				a. Iterable objects (ex: list) can be passed to built-in iter() function to get an iterator.
+					for ex: iterator = iter(iterable)
+			2. Iterator Protocol:
+				a. Iterator objects can be passed to the bult-in next() function to fetch the next item.
+					for ex: item = next(iterator)
+				ex: iterable = ['Spring', 'Summer', 'Autumn', 'Winter']
+					iterator = iter(iterable)
+					next(iterator)  = > 'Spring'
+					next (iterator) = > 'Summer' Note: each call will move to next item in iterator
+				Exception Note: if it reaches end, and still we do call next(iterator) will raise an exception, StopIteration. We need to handle the exception for different errors.  (iterations.py)
+				
 						
 				
 										
