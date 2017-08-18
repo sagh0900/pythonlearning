@@ -6,11 +6,9 @@ def convert(s):
     try:
         x = int(s)
         print("conversion succeeded! x =", x)
-    except ValueError:
-        print("conevsrion failed")
-        x = -1
-    except TypeError:
-        print("cannot convert collection object, x =", s)
+    except (ValueError, TypeError):
+        #  print("conversion failed!")
+        pass
     return x
 
 
