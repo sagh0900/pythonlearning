@@ -516,9 +516,12 @@ Python:
 				b) Handle an exception to resume control.
 				c) Unhandled exception will terminate the program
 				d) Exception objects contain information about the exceptional event.
-				e) Except blocks must not be empty and are not allowed in python. If empty, indentationError, SyntaxError or NameError will be thrown which are usually used while developing Python IDE. They can be replaced in a program with "pass" statement.
+				e) Except blocks must not be empty and are not allowed in python. If empty, indentationError, SyntaxError or NameError will be thrown which are usually handled only while developing Python IDE. They can be replaced in a program with "pass" statement.
 				f) Exception objects can be converted using str(e) constructor.
 				g) raise is a keyword used at end of exception handling block. Without a parameter, raise simply re-raises the excepption that is being currently handled.
+				h) Output of print() can be redirected using the optional file argument.
+					for ex:     except OSError as e:
+									print(e, file=sys.stderr)
 			2. Exceptions are part of the API
 				a) Callers need to know 'what exceptions' to expect and 'when'. (roots.py)
 				b) Exception are parts of families of related functions referred to at "protocols"
@@ -539,6 +542,62 @@ Python:
 					i) To implement this:
 						- > In Windows we use, msvcrt module. 
 						- > In linux/mac we use, sys, tty and termios modules. 
+				b) Platform-specific actions can be implemented using Easy to Ask Forgiveness than Permission approach along with catching ImportErrors.
+17. Iterables: Iterable Objects and Iterators
+		a. list comprehensions
+			for ex: words = "I love to visit Norway anytime".split()
+					words = > ['I', 'love', 'to', 'visit', 'Norway', 'anytime']
+				Comprehension for list types: (Easily understandable)
+					for ex: [len(word) for word in words]
+						= > [1, 4, 2, 5, 6, 6]
+				1) General form of list comprehension is: 
+						[ expr(item)  for item in iterable ]
+						Note: This comprehension is equilvalent to following for loop.
+							for ex: lengths = []
+										for word in words:
+											lengths.append(len(word))
+									print(lengths)
+				2) Note: The type of output produced by list comphrehension is a list.
+				3) Comprehensions produced by list type may result in duplicate values
+					for e: from math import factorial as fact
+						   f = [len(str(fact(x))) for x in range(14)]
+						   f = > [1, 1, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14]
+		b. set comphrehension
+			for ex: { expr(item) for item in iterable }
+				1. The comprehensions produced by set type will also result a set.
+				2. Using set comprehensions we can eliminate the duplicate values in the produced data set.
+					for ex: {len(str(fact(x))) for x in range(14)]
+						= > {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14]
+		c. Dictionary Comprehension (comprehension.py)
+			a) similar to set but we provide two colon seperated expressions for key and value, which will be evaluated in tandem for each item.
+				for ex: { key_expr:value_expr for item in iterable }
+						
+				ex:		from pprint import pprint as pp
+						country_to_capital = {'UK': 'London',
+										   'Sweden': 'Stockholm',
+										   'Norway': 'Oslo',
+										   'Netherlands': 'Amsterdam'}
+					Note: To use dictionary comphrehension is to invert a dictionary so we can perform effecient lookups.  
+						for ex: capital_to_country: {capital: country for country, capital in 	country_to_capital.items()}
+						
+								Note: The dictionary comphrehension is not usually operate dictionary on sources while they can, but recall that iterating over a dictionary yeilds only the keys.
+						pp(capital_to_country)
+						= > {'London': 'UK',
+							 'Stockholm': 'Sweden',
+							 'Oslo': 'Norway',
+							 'Amsterdam': 'Netherlands'}
+								Note: 1. If we want both keys and values to print, we should use items() method of the dictioanry. 
+									  2. Duplicates in the list while using dictionary comphrehension, later keys will overrite earlier keys.
+										for ex: words = ["hi, "hello", "foxtrot", "hotel"]
+												{x[0]: x for x in words }
+												= > {'h': 'hotel', 'f': 'foxtrot'}
+									  3. Don't cram too much complexity into comprehensions
+			Note: All the three comprehension types support an optional filtering clause, which allows us to choose which items of the source are evaluated by the expression on the left. (primes.py)
+						
+						
+				
+										
+
 					
 				
 				
