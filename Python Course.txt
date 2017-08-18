@@ -524,6 +524,24 @@ Python:
 				b) Exception are parts of families of related functions referred to at "protocols"
 					for ex: Objects which implement the sequence protocol should raise and IndexError exception for indices which are out of range. 
 						i) The exceptions which are raised as much a part of function's specification as the arguments it accepts, and as such must be implemented and documented appropriately. 
+				c) Often built-in exceptions in python to raise and handled. 
+					i)	IndexError	(is raised when Index integer is out of range)
+					ii)	ValueError	(is raised when object is of right type but contains an inappropriate value.
+					iii)KeyError	(raised when look-up in a mapping fails)
+					iv)	TypeError	(Avoid protecting against TypeError, we can't address all types in a single program)
+					v)	OSError
+					v)	More & User Defined Exceptions 
+				d) Pythons strong philosphy. : Its easier to ask forgiveness than permission (EAFP)
+				e) finally-block.: finally-block is executed no matter how try-block exits. (finally.py)
+					i) Errors are like bells and if we make them silent, they are of no use.
+			3. Platform-specific modules:
+				a) Detecting a single keypress from Python such as the press any key to continue functionality at the console requires use of operating system modules. We can't use the bult-in input function because that waits for the user to press Return key before giving us a string. (keypress.py)
+					i) To implement this:
+						- > In Windows we use, msvcrt module. 
+						- > In linux/mac we use, sys, tty and termios modules. 
+					
+				
+				
 			
 				
 			
