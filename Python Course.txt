@@ -607,6 +607,86 @@ Python:
 					next(iterator)  = > 'Spring'
 					next (iterator) = > 'Summer' Note: each call will move to next item in iterator
 				Exception Note: if it reaches end, and still we do call next(iterator) will raise an exception, StopIteration. We need to handle the exception for different errors.  (iterations.py)
+		e. Generator Functions: Most powerful feature of Python  (genarator.py) 
+			1. Python generators provide the means for describing iterable series with code and functions.
+			2. They only compute the next value in sequence on demand. 
+			3. Can model inifinite sequences such as daa streams with no definite end.
+			4. Proper design of generator functions can make generic stream processing elements which can be composed into sophosticated pipelines.
+			5. Using yield keyword at least once in a python function definition makes it a generator function. 
+			6. Generator functions may have return keyword without arguments. 
+				for ex: 
+				def gen123():
+					yield 1
+					yield 2
+					return 
+				g = gen123()
+				g = > <generator object gen123 at 0x1006fd3c0>
+				next(g) = > 1 next(g) = > 2 next(g) = > 3
+				next(g) = > raises StopIteration Exception similar to any other collection.
+					Also can be iterated through for loop,
+						for v in gen123():
+							print(v)
+						..
+						1
+						2
+						3 
+				Note: Assigning Generator functions to different variables creates different generator objects.
+				h = gen123() = > <generator object gen123 at 0x1006fd3c0>
+				i = gen123() = > <generator object gen123 at 0x1006fe9q1>
+						i.e, h is not i
+			7. Generators resume execution.
+			8. Can maintain state in local variables
+			9. Complex comtrol flow 
+			10. Lazy evaluation.
+					a) Only when the next result is requested, generator executes.
+						Apps: infinite sequences, sensor readings, mathematical series, massive files.
+		f. Generator Comprehensions: 
+			1. Similar syntax to list comprehensions
+			2. Create a generator object
+			3. Concise
+			4. Lazy Evaluation
+			
+			Note: Generator expressions are cross between comprehension and generator functions.
+				i) Generator expressions result in creation of generator object which produces the specified sequence lazily. 
+					syntax: (expr(item) for item in iterable)
+						for ex: m_s = (x*x for x in range(1, 5))  # squares of numbers from 1 - 10
+					However, above statement doesn't produce any result but creates a generator object.
+						= > We need to convert the generator object to list variable.
+							1. list(m_s) = [1, 4, 9, 16]
+							Note: reapeating list(m_s) doesn't print anything since already yeilded values from generator object created a list.
+				ii) Generators are single use objects.
+				iii) Each time we call a generator function, we create a new generator object. 
+				iv) To create a generator from generator expression we must execute the expression again. 
+					Note: Python builtin functions can be directly applied on generator comprehensions.
+							for ex: sum(x*x for x in range(1,100))
+						clause: sum(x*x for x in range(1,100) if is_prime(x))
+						
+		g. Iterable Objects:
+				1) list
+				2) set 
+				3) dict 
+				4) tuple 
+				5) range
+				6) str
+			    7) bytes
+				8) Any object that follows the iterable protocol. 
+					Note:	Python provides number of built-in fucntions for performing common iterator operations. 
+					i)	These functions form the call of a sort of vocabulary for working with iterators, and they can be combined to produce powerful statements in very concise, readable code. 
+								= > look for python3 itertools and usage.
+						for ex:	sum of first thousand numbers using islice() and count() (itertoolsex.py)
+							Other two important iterable functions are:	any([False, False, True)
+																		True 
+																		all([False, False, True])
+																		False
+												for ex:	any(is_prime(x) for x in range(1328, 1361))
+														False 
+					ii)	If we have list and draw the mapping between each corresponding elements, we use zip function from itertools and result will be tuples. (zipper.py)
+						ghanta = ['arun', 'ram', 'sai', 'asha')
+						others = ['hema', 'vyshu', '-', 'naveen')
+							for item in zip(ghanta, others):
+								print(item)
+							
+						
 				
 						
 				
